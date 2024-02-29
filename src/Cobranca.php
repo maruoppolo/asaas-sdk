@@ -139,6 +139,19 @@ class Cobranca {
                 'fine'                 => '',
             );
 
+            if (array_key_exists('credit_card', $dados)) {
+                $this->cobranca['credit_card'] = array(
+                    'holderName'  => '',
+                    'number'      => '',
+                    'expiryMonth' => '',
+                    'expiryYear'  => '',
+                    'ccv'         => ''
+                );
+
+                $this->cobranca['credit_card'] = array_merge($this->cobranca['credit_card'], $dados['credit_card']);
+                unset($dados['credit_card']); // Remover os dados do cartão de crédito do array principal
+            }
+
             $this->cobranca = array_merge($this->cobranca, $dados);
             return $this->cobranca;
 
